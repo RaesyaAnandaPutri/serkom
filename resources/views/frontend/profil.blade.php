@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profil Perusahaan - {{ $profil->name ?? 'PT Solusi Koneksi Anda' }}</title>
+    <title>Profil Perusahaan - {{ $profil->nama ?? 'PT Solusi Koneksi Anda' }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
     <section class="py-5">
         <div class="container py-4">
             <h1 class="display-5 fw-bold text-dark mb-3">Profil Perusahaan</h1>
-            <h5 class="fw-bold text-secondary mb-3">{{ $profil->name ?? 'PT Solusi Koneksi Anda' }}</h5>
+            <h5 class="fw-bold text-secondary mb-3">{{ $profil->nama ?? 'PT Solusi Koneksi Anda' }}</h5>
             <p class="text-secondary" style="max-width: 640px; white-space: pre-line;">{{ $profil->deskripsi ?? 'Perusahaan penyedia layanan IT yang berfokus pada pengembangan website, aplikasi web, dan konsultasi sistem informasi.' }}</p>
         </div>
     </section>
@@ -38,7 +38,7 @@
                             <i class="bi bi-eye fs-4"></i>
                         </div>
                         <h4 class="fw-bold text-dark">Visi</h4>
-                        <p class="text-secondary mb-0" style="white-space: pre-line;">{{ $profil->visi ?? 'Menjadi mitra teknologi terpercaya bagi dunia usaha di Indonesia.' }}</p>
+                        <p class="text-secondary mb-0" style="white-space: pre-line;">{{ $profil->visi ?: 'Menjadi mitra teknologi terpercaya bagi dunia usaha di Indonesia.' }}</p>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                             <i class="bi bi-rocket-takeoff fs-4"></i>
                         </div>
                         <h4 class="fw-bold text-dark">Misi</h4>
-                        <p class="text-secondary mb-0" style="white-space: pre-line;">{{ $profil->misi ?? 'Menyediakan layanan IT yang profesional, cepat, dan berorientasi pada kepuasan klien.' }}</p>
+                        <p class="text-secondary mb-0" style="white-space: pre-line;">{{ $profil->misi ?: 'Menyediakan layanan IT yang profesional, cepat, dan berorientasi pada kepuasan klien.' }}</p>
                     </div>
                 </div>
 

@@ -24,13 +24,14 @@ class ServiceController extends Controller
     {
         $request->validate([
             'nama'      => 'required|string|max:255',
+            'kategori'  => 'required|in:Web Development,Mobile Apps,Sistem Informasi,IT Consulting & Cloud',
             'deskripsi' => 'required|string',
             'gambar'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'date'      => 'nullable|date',
             'status'    => 'required|in:draft,publik',
         ]);
 
-        $data = $request->only(['nama', 'deskripsi', 'status']);
+        $data = $request->only(['nama', 'kategori', 'deskripsi', 'status']);
 
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('services', 'public');
@@ -56,13 +57,14 @@ class ServiceController extends Controller
     {
         $request->validate([
             'nama'      => 'required|string|max:255',
+            'kategori'  => 'required|in:Web Development,Mobile Apps,Sistem Informasi,IT Consulting & Cloud',
             'deskripsi' => 'required|string',
             'gambar'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'date'      => 'nullable|date',
             'status'    => 'required|in:draft,publik',
         ]);
 
-        $data = $request->only(['nama', 'deskripsi', 'status']);
+        $data = $request->only(['nama', 'kategori', 'deskripsi', 'status']);
 
         if ($request->hasFile('gambar')) {
             if ($service->gambar && Storage::disk('public')->exists($service->gambar)) {

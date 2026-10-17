@@ -6,6 +6,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-12">
+
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4 p-lg-5">
                 <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
@@ -25,33 +26,32 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label class="form-label fw-semibold small text-secondary">Nama Perusahaan</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $profile->name ?? '') }}" required>
-                            @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $profile->nama ?? '') }}" required>
+                            @error('nama')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-12">
                             <label class="form-label fw-semibold small text-secondary">Tentang Perusahaan (Deskripsi)</label>
-                            {{-- Diperbaiki agar mengambil langsung dari $profile->deskripsi --}}
-                            <textarea name="description" rows="4" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $profile->deskripsi ?? '') }}</textarea>
-                            @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <textarea name="deskripsi" rows="4" class="form-control @error('deskripsi') is-invalid @enderror" required>{{ old('deskripsi', $profile->deskripsi ?? '') }}</textarea>
+                            @error('deskripsi')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label fw-semibold small text-secondary">Visi</label>
-                            <textarea name="vision" rows="3" class="form-control @error('vision') is-invalid @enderror">{{ old('vision', $profile->visi ?? '') }}</textarea>
-                            @error('vision')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <textarea name="visi" rows="3" class="form-control @error('visi') is-invalid @enderror">{{ old('visi', $profile->visi ?? '') }}</textarea>
+                            @error('visi')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label fw-semibold small text-secondary">Misi</label>
-                            <textarea name="mission" rows="3" class="form-control @error('mission') is-invalid @enderror">{{ old('mission', $profile->misi ?? '') }}</textarea>
-                            @error('mission')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <textarea name="misi" rows="3" class="form-control @error('misi') is-invalid @enderror">{{ old('misi', $profile->misi ?? '') }}</textarea>
+                            @error('misi')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label fw-semibold small text-secondary">Nomor Telepon</label>
-                            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $profile->telepon ?? '') }}" required>
-                            @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <input type="text" name="telepon" class="form-control @error('telepon') is-invalid @enderror" value="{{ old('telepon', $profile->telepon ?? '') }}" required>
+                            @error('telepon')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-md-4">
@@ -62,14 +62,14 @@
 
                         <div class="col-md-4">
                             <label class="form-label fw-semibold small text-secondary">Alamat Lengkap</label>
-                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address', $profile->alamat ?? '') }}" required>
-                            @error('address')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $profile->alamat ?? '') }}" required>
+                            @error('alamat')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label fw-semibold small text-secondary">Google Maps Embed (URL / Iframe)</label>
-                            <input type="text" name="maps_embed" class="form-control @error('maps_embed') is-invalid @enderror" value="{{ old('maps_embed', $profile->peta ?? '') }}" placeholder="Masukkan link embed iframe Google Maps">
-                            @error('maps_embed')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <label class="form-label fw-semibold small text-secondary">Google Maps Embed (Iframe)</label>
+                            <input type="text" name="peta" class="form-control @error('peta') is-invalid @enderror" value="{{ old('peta', $profile->peta ?? '') }}" placeholder="Tempel kode iframe dari Google Maps">
+                            @error('peta')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="col-12 text-end mt-4 pt-3 border-top">

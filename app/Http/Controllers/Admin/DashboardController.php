@@ -13,21 +13,21 @@ class DashboardController extends Controller
     public function index()
     {
         // Variabel penghitung dan data terbaru menggunakan bahasa Indonesia
-        $serviceCount = Service::count();
-        $articleCount = Article::where('status', 'publik')->count();
-        $galleryCount = Gallery::count();
+        $jumlahLayanan = Service::count();
+        $jumlahArtikel = Article::where('status', 'publik')->count();
+        $jumlahGaleri = Gallery::count();
 
-        $profile = CompanyProfile::first();
-        $latestServices = Service::latest()->take(3)->get();
-        $latestArticles = Article::latest()->take(3)->get();
+        $profil = CompanyProfile::first();
+        $layananTerbaru = Service::latest()->take(3)->get();
+        $artikelTerbaru = Article::latest()->take(3)->get();
 
         return view('admin.dashboard', compact(
-            'serviceCount',
-            'articleCount',
-            'galleryCount',
-            'profile',
-            'latestServices',
-            'latestArticles'
+            'jumlahLayanan',
+            'jumlahArtikel',
+            'jumlahGaleri',
+            'profil',
+            'layananTerbaru',
+            'artikelTerbaru'
         ));
     }
 }

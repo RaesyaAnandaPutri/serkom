@@ -11,7 +11,10 @@ class Contact extends Model
     protected $fillable = [
         'nama',
         'email',
+        'telepon',
+        'subjek',
         'pesan',
         'rating',
+        'status',   
     ];
 }

@@ -29,10 +29,28 @@ class FrontController extends Controller
         return view('frontend.profil', compact('profil'));
     }
 
-    // Halaman Produk / Layanan
-    public function layanan()
+    // Halaman Layanan (Dilengkapi Kategori, Search & Pagination)
+    public function layanan(Request $request)
     {
-        $layanan = Service::where('status', 'publik')->latest()->get();
+        $keyword  = $request->input('cari');
+        $kategori = $request->input('kategori');
+        
+        $layanan = Service::where('status', 'publik')
+            // Filter berdasarkan Kategori jika dipilih
+            ->when($kategori, function($query, $kategori) {
+                return $query->where('kategori', $kategori);
+            })
+            // Filter berdasarkan Pencarian jika ada
+            ->when($keyword, function($query, $keyword) {
+                return $query->where(function($q) use ($keyword) {
+                    $q->where('nama', 'like', "%{$keyword}%")
+                      ->orWhere('deskripsi', 'like', "%{$keyword}%");
+                });
+            })
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+
         return view('frontend.layanan', compact('layanan'));
     }
 
@@ -43,10 +61,20 @@ class FrontController extends Controller
         return view('frontend.layanan-detail', compact('layanan'));
     }
 
-    // Halaman Artikel
-    public function artikel()
+    // Halaman Artikel (Dilengkapi Search & Pagination)
+    public function artikel(Request $request)
     {
-        $artikel = Article::where('status', 'publik')->latest()->get();
+        $keyword = $request->input('cari');
+
+        $artikel = Article::where('status', 'publik')
+            ->when($keyword, function($query, $keyword) {
+                return $query->where('judul', 'like', "%{$keyword}%")
+                           ->orWhere('konten', 'like', "%{$keyword}%");
+            })
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+
         return view('frontend.artikel', compact('artikel'));
     }
 
@@ -57,10 +85,20 @@ class FrontController extends Controller
         return view('frontend.artikel-detail', compact('artikel'));
     }
 
-    // Halaman Galeri
-    public function galeri()
+    // Halaman Galeri (Dilengkapi Search & Pagination)
+    public function galeri(Request $request)
     {
-        $galeri = Gallery::where('status', 'publik')->latest()->get();
+        $keyword = $request->input('cari');
+
+        $galeri = Gallery::where('status', 'publik')
+            ->when($keyword, function($query, $keyword) {
+                return $query->where('judul', 'like', "%{$keyword}%")
+                           ->orWhere('deskripsi', 'like', "%{$keyword}%");
+            })
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+
         return view('frontend.galeri', compact('galeri'));
     }
 

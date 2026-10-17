@@ -75,10 +75,10 @@
                 @empty
                     <tr>
                         <td colspan="6" class="text-center py-5">
-                            <i class="bi bi-images fs-1 text-primary opacity-50"></i>
+                            <i class="bi bi-images fs-1 text-secondary opacity-50"></i>
                             <h6 class="fw-bold mt-2">Belum Ada Data Galeri</h6>
                             <p class="text-muted small">Silakan unggah foto kegiatan baru.</p>
-                            <a href="{{ route('admin.galeri.create') }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <a href="{{ route('admin.galeri.create') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
                                 <i class="bi bi-plus-lg me-1"></i> Tambah Galeri Pertama
                             </a>
                         </td>

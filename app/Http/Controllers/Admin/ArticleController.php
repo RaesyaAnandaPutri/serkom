@@ -26,6 +26,7 @@ class ArticleController extends Controller
             'judul'  => 'required|string|max:255',
             'konten' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'date'   => 'nullable|date',   // <-- tanggal dari form
             'status' => 'required|in:draft,publik',
         ]);
 
@@ -35,26 +36,30 @@ class ArticleController extends Controller
             $data['gambar'] = $request->file('gambar')->store('articles', 'public');
         }
 
-        Article::create($data);
+        $article = Article::create($data);
+
+        // Tanggal dari form disimpan ke created_at
+        if ($request->filled('date')) {
+            $article->created_at = $request->date;
+            $article->save();
+        }
 
         return redirect()->route('admin.artikel.index')->with('success', 'Artikel berhasil ditambahkan!');
     }
 
-    // <-- TAMBAHKAN METHOD EDIT INI -->
     public function edit(Article $artikel)
     {
-        // Sesuaikan nama view dengan folder kamu (misal: admin.articles.edit atau admin.artikel.edit)
         $article = $artikel;
         return view('admin.articles.edit', compact('article', 'artikel'));
     }
 
-    // <-- TAMBAHKAN METHOD UPDATE INI -->
     public function update(Request $request, Article $artikel)
     {
         $request->validate([
             'judul'  => 'required|string|max:255',
             'konten' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'date'   => 'nullable|date',   // <-- tanggal dari form
             'status' => 'required|in:draft,publik',
         ]);
 
@@ -69,6 +74,12 @@ class ArticleController extends Controller
 
         $artikel->update($data);
 
+        // Tanggal dari form disimpan ke created_at
+        if ($request->filled('date')) {
+            $artikel->created_at = $request->date;
+            $artikel->save();
+        }
+
         return redirect()->route('admin.artikel.index')->with('success', 'Artikel berhasil diperbarui!');
     }
 
@@ -77,7 +88,7 @@ class ArticleController extends Controller
         if ($artikel->gambar) {
             Storage::disk('public')->delete($artikel->gambar);
         }
-        
+
         $artikel->delete();
 
         return redirect()->route('admin.artikel.index')->with('success', 'Artikel berhasil dihapus!');

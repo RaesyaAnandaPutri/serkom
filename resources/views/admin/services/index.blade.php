@@ -19,6 +19,7 @@
                 <tr class="text-secondary small text-uppercase">
                     <th>Foto</th>
                     <th>Nama Layanan</th>
+                    <th>Kategori</th>
                     <th>Tanggal</th>
                     <th>Status</th>
                     <th>Deskripsi</th>
@@ -41,6 +42,13 @@
 
                         {{-- Nama --}}
                         <td class="fw-bold">{{ $service->nama }}</td>
+
+                        {{-- Kategori --}}
+                        <td>
+                            <span class="badge bg-light text-dark border px-2 py-1">
+                                {{ $service->kategori ?? '-' }}
+                            </span>
+                        </td>
 
                         {{-- Tanggal --}}
                         <td class="text-secondary small">
@@ -81,11 +89,11 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center py-5">
+                        <td colspan="7" class="text-center py-5">
                             <i class="bi bi-inbox fs-1 text-primary opacity-50"></i>
                             <h6 class="fw-bold mt-2">Belum Ada Data Layanan</h6>
                             <p class="text-muted small">Silakan tambahkan layanan baru agar muncul di tabel ini.</p>
-                            <a href="{{ route('admin.layanan.create') }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <a href="{{ route('admin.layanan.create') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
                                 <i class="bi bi-plus-lg me-1"></i> Tambah Layanan Pertama
                             </a>
                         </td>

@@ -52,10 +52,19 @@
                 @error('deskripsi') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-                {{-- Kolom kanan: nama, tanggal, status --}}
+                {{-- Kolom kanan: kategori, nama, tanggal, status --}}
                 <div class="col-lg-5">
-                    <label class="form-label fw-semibold small">Nama Layanan</label>
-                    {{-- Diubah dari name="name" menjadi name="nama" --}}
+                    <label class="form-label fw-semibold small">Kategori Layanan <span class="text-danger">*</span></label>
+                    <select name="kategori" class="form-select @error('kategori') is-invalid @enderror" required>
+                        <option value="" disabled selected>Pilih Kategori Layanan</option>
+                        <option value="Web Development" {{ old('kategori') == 'Web Development' ? 'selected' : '' }}>Web Development</option>
+                        <option value="Mobile Apps" {{ old('kategori') == 'Mobile Apps' ? 'selected' : '' }}>Mobile Apps</option>
+                        <option value="Sistem Informasi" {{ old('kategori') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
+                        <option value="IT Consulting & Cloud" {{ old('kategori') == 'IT Consulting & Cloud' ? 'selected' : '' }}>IT Consulting & Cloud</option>
+                    </select>
+                    @error('kategori') <div class="invalid-feedback">{{ $message }}</div> @enderror
+
+                    <label class="form-label fw-semibold small mt-4">Nama Layanan <span class="text-danger">*</span></label>
                     <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" placeholder="Contoh: Pengembangan Aplikasi Web" required>
                     @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
 

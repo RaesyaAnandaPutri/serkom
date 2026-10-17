@@ -12,13 +12,13 @@ class CompanyProfile extends Model
     protected $table = 'company_profiles';
 
     protected $fillable = [
-        'name',
-        'deskripsi',  
-        'visi',       
-        'misi',       
-        'telepon',    
-        'email',      
-        'alamat',     
-        'peta',       
+        'nama',
+        'deskripsi',
+        'visi',
+        'misi',
+        'telepon',
+        'email',
+        'alamat',
+        'peta',
     ];
 }

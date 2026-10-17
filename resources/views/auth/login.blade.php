@@ -42,9 +42,7 @@
                 {{-- Logo / Identitas Perusahaan di Atas Card --}}
                 <div class="text-center mb-4">
                     <a href="{{ url('/') }}" class="d-inline-flex align-items-center gap-2 text-decoration-none text-dark fw-bold fs-5 mb-2">
-                        <div class="brand-box text-white rounded-3 p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="bi bi-hdd-rack fs-5"></i>
-                        </div>
+                        <img src="{{ asset('images/logo solusi koneksi anda.png') }}" alt="Logo Solusi Koneksi Anda" style="width: 50px; height: 50px; object-fit: contain;" class="rounded-3">
                         Solusi Koneksi Anda
                     </a>
                     <p class="text-secondary small mb-0">Masuk ke panel kontrol admin</p>

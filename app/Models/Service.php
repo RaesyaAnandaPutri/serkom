@@ -10,6 +10,7 @@ class Service extends Model
 
     protected $fillable = [
         'nama',
+        'kategori', 
         'deskripsi',
         'gambar',
         'status',

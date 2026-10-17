@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
             $table->string('email');
-            $table->string('phone')->nullable();
-            $table->string('subject');
-            $table->text('message');
-            $table->unsignedTinyInteger('rating')->default(5); // Kolom Rating (1-5 Bintang)
+            $table->string('telepon')->nullable();
+            $table->string('subjek')->nullable();
+            $table->text('pesan');
+            $table->unsignedTinyInteger('rating')->default(5); // 1-5 bintang
             $table->enum('status', ['unread', 'read'])->default('unread');
             $table->timestamps();
         });

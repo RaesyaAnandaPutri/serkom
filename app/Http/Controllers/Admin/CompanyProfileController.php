@@ -16,35 +16,35 @@ class CompanyProfileController extends Controller
 
     public function update(Request $request)
     {
+        // Nama field di form = nama kolom di database
         $request->validate([
-            'name'        => 'required|string|max:255',
-            'description' => 'required|string',
-            'vision'      => 'nullable|string',
-            'mission'     => 'nullable|string',
-            'phone'       => 'required|string|max:50',
-            'email'       => 'required|email|max:255',
-            'address'     => 'required|string',
-            'maps_embed'  => 'nullable|string',
+            'nama'      => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'visi'      => 'nullable|string',
+            'misi'      => 'nullable|string',
+            'telepon'   => 'required|string|max:50',
+            'email'     => 'required|email|max:255',
+            'alamat'    => 'required|string',
+            'peta'      => 'nullable|string',
         ]);
+
+        $data = $request->only([
+            'nama', 'deskripsi', 'visi', 'misi',
+            'telepon', 'email', 'alamat', 'peta',
+        ]);
+
+        // Kolom visi, misi, dan peta di database tidak boleh NULL,
+        // jadi kalau dikosongkan di form, simpan sebagai teks kosong
+        foreach (['visi', 'misi', 'peta'] as $kolom) {
+            $data[$kolom] = $data[$kolom] ?? '';
+        }
 
         $profile = CompanyProfile::first();
 
-        // Disamakan menggunakan 'telepon' dan 'alamat'
-        $data = [
-            'name'      => $request->name,
-            'deskripsi' => $request->description, 
-            'visi'      => $request->vision,      
-            'misi'      => $request->mission,     
-            'telepon'   => $request->phone,     // Masuk ke kolom 'telepon'
-            'email'     => $request->email,
-            'alamat'    => $request->address,   // Masuk ke kolom 'alamat'
-            'peta'      => $request->maps_embed,      
-        ];
-
-        if (!$profile) {
-            CompanyProfile::create($data);
-        } else {
+        if ($profile) {
             $profile->update($data);
+        } else {
+            CompanyProfile::create($data);
         }
 
         return redirect()->route('admin.profil.edit')->with('success', 'Profil perusahaan berhasil diperbarui!');

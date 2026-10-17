@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('kategori')->default('Web Development'); 
             $table->text('deskripsi');
             $table->string('gambar')->nullable();
             $table->string('status')->default('draft');

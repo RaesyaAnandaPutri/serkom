@@ -75,10 +75,10 @@
                 @empty
                     <tr>
                         <td colspan="6" class="text-center py-5">
-                            <i class="bi bi-inbox fs-1 text-primary opacity-50"></i>
+                            <i class="bi bi-inbox fs-1 text-secondary opacity-50"></i>
                             <h6 class="fw-bold mt-2">Belum Ada Data Artikel</h6>
                             <p class="text-muted small">Silakan tambahkan artikel baru agar muncul di tabel ini.</p>
-                            <a href="{{ route('admin.artikel.create') }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <a href="{{ route('admin.artikel.create') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
                                 <i class="bi bi-plus-lg me-1"></i> Tambah Artikel Pertama
                             </a>
                         </td>

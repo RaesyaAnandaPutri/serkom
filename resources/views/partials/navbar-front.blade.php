@@ -1,10 +1,9 @@
 <nav class="navbar navbar-expand-lg sticky-top border-bottom py-3" style="background: #fafafa;">
     <div class="container">
 
-        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark" href="{{ url('/') }}">
-            <span class="bg-dark text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
-                <i class="bi bi-hdd-network-fill"></i>
-            </span>
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark text-decoration-none" href="{{ url('/') }}">
+            {{-- Menampilkan Logo Gambar --}}
+            <img src="{{ asset('images/logo solusi koneksi anda.png') }}" alt="Logo Solusi Koneksi Anda" style="width: 38px; height: 38px; object-fit: contain;" class="rounded-3">
             Solusi Koneksi Anda
         </a>
 
