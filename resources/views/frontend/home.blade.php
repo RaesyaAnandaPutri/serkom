@@ -16,7 +16,7 @@
         .hero-visual { min-height: 500px; border-radius: 28px; }
     </style>
 </head>
-<body>
+<body x-data="{ selectedGallery: null }" @keydown.escape.window="selectedGallery = null">
 
     @include('partials.navbar-front')
 
@@ -161,7 +161,19 @@
             <div class="row g-4">
                 @forelse($galeri->take(3) as $gal)
                 <div class="col-md-4">
-                    <div class="card h-100 border rounded-4 p-2 shadow-sm">
+                    <div class="card h-100 border rounded-4 p-2 shadow-sm"
+                         role="button"
+                         tabindex="0"
+                         aria-label="Lihat detail {{ $gal->judul ?? $gal->title }}"
+                         style="cursor: pointer;"
+                         @click="selectedGallery = {
+                            title: @js($gal->judul ?? $gal->title),
+                            description: @js(strip_tags($gal->deskripsi ?? $gal->description ?? 'Tidak ada deskripsi.')),
+                            image: @js(($gal->gambar ?? $gal->image) ? asset('storage/' . ($gal->gambar ?? $gal->image)) : null),
+                            date: @js($gal->created_at->translatedFormat('d M Y'))
+                         }"
+                         @keydown.enter.prevent="$el.click()"
+                         @keydown.space.prevent="$el.click()">
                         @if($gal->gambar ?? $gal->image)
                             <img src="{{ asset('storage/' . ($gal->gambar ?? $gal->image)) }}" class="rounded-4 w-100" style="height: 220px; object-fit: cover;" alt="{{ $gal->judul ?? $gal->title }}">
                         @else
@@ -187,6 +199,53 @@
             </div>
         </div>
     </section>
+
+    <template x-if="selectedGallery">
+        <div x-transition.opacity
+             class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
+             style="z-index: 1080; background: rgba(15, 23, 42, .6);"
+             role="presentation"
+             @click.self="selectedGallery = null">
+            <section x-transition
+                     role="dialog"
+                     aria-modal="true"
+                     aria-labelledby="home-gallery-detail-title"
+                     class="card border-0 rounded-4 shadow-lg overflow-hidden w-100"
+                     style="max-width: 760px; max-height: 90vh;">
+                <div class="row g-0">
+                    <div class="col-md-6 bg-light d-flex align-items-center justify-content-center" style="min-height: 240px;">
+                        <template x-if="selectedGallery.image">
+                            <img :src="selectedGallery.image"
+                                 :alt="selectedGallery.title"
+                                 class="w-100 h-100 object-fit-cover"
+                                 style="min-height: 240px; max-height: 520px;">
+                        </template>
+                        <template x-if="!selectedGallery.image">
+                            <div class="grad w-100 h-100 text-white d-flex align-items-center justify-content-center" style="min-height: 240px;">
+                                <i class="bi bi-image fs-1"></i>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column overflow-auto">
+                        <div class="p-4 p-lg-5">
+                            <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                                <span class="badge bg-light border text-secondary rounded-pill">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    <span x-text="selectedGallery.date"></span>
+                                </span>
+                                <button type="button"
+                                        class="btn-close"
+                                        aria-label="Tutup detail galeri"
+                                        @click="selectedGallery = null"></button>
+                            </div>
+                            <h2 id="home-gallery-detail-title" class="h4 fw-bold text-dark mb-3" x-text="selectedGallery.title"></h2>
+                            <p class="text-secondary mb-0" style="white-space: pre-line;" x-text="selectedGallery.description"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </template>
 
 {{-- ============ 5. ARTIKEL ============ --}}
     <section class="py-5 border-top">
@@ -231,5 +290,6 @@
     @include('partials.footer-front')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.17.4/dist/cdn.min.js"></script>
 </body>
 </html>
