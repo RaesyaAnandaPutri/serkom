@@ -114,18 +114,18 @@ class FrontController extends Controller
         $request->validate([
             'nama'   => 'required|string|max:255',
             'email'  => 'required|email|max:255',
-            'rating' => 'nullable|integer|min:1|max:5',
-            'pesan'  => 'required|string',
+            'subjek' => 'required|string|max:255', 
+            'pesan'  => 'required|string', // Wajib diisi
         ]);
 
         Contact::create([
             'nama'   => $request->nama,
             'email'  => $request->email,
-            'rating' => $request->rating,
+            'subjek' => $request->subjek,
             'pesan'  => $request->pesan,
             'status' => 'unread',
         ]);
 
-        return redirect()->route('front.kontak')->with('success', 'Pesan dan penilaian Anda berhasil dikirim!');
+        return redirect()->route('front.kontak')->with('success', 'Pesan konsultasi layanan Anda berhasil dikirim!');
     }
 }

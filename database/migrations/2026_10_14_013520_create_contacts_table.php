@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('email');
+            $table->string('telepon')->nullable(); // Sesuai dengan Model
+            $table->string('subjek');              // Menggantikan rating
             $table->text('pesan');
-            $table->unsignedTinyInteger('rating')->default(5); // 1-5 bintang
             $table->enum('status', ['unread', 'read'])->default('unread');
             $table->timestamps();
         });

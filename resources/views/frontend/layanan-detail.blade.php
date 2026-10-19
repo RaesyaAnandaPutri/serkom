@@ -62,22 +62,26 @@
                     </div>
                 </div>
 
-                {{-- Sidebar Aksi / Kontak Cepat --}}
-                <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
-                        <div class="bg-light rounded-circle mx-auto d-flex align-items-center justify-content-center mb-3 text-dark" style="width: 60px; height: 60px;">
-                            <i class="bi bi-headset fs-3"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Tertarik dengan Layanan Ini?</h5>
-                        <p class="small text-dark mb-4">Hubungi tim kami segera untuk konsultasi kebutuhan bisnis Anda.</p>
-                        
-                        <a href="https://wa.me/6283183921389?text={{ urlencode('Halo PT Solusi Koneksi Anda, saya tertarik dengan layanan ' . $layanan->nama . '. Mohon informasinya lebih lanjut.') }}" 
-                           target="_blank" 
-                           class="btn btn-dark rounded-pill w-100 py-2 fw-semibold shadow-sm">
-                            <i class="bi bi-whatsapp me-1"></i> Hubungi via WhatsApp
-                        </a>
+            {{-- Sidebar Aksi / Kontak Cepat --}}
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
+                    <div class="bg-light rounded-circle mx-auto d-flex align-items-center justify-content-center mb-3 text-dark"
+                        style="width: 60px; height: 60px;">
+                        <i class="bi bi-envelope fs-3"></i>
                     </div>
+
+                    <h5 class="fw-bold text-dark mb-2">Tertarik dengan Layanan Ini?</h5>
+
+                    <p class="small text-dark mb-4">
+                        Hubungi tim kami melalui halaman kontak untuk konsultasi kebutuhan bisnis Anda.
+                    </p>
+
+                    <a href="{{ route('front.kontak') }}"
+                    class="btn btn-dark rounded-pill w-100 py-2 fw-semibold shadow-sm">
+                        <i class="bi bi-envelope me-1"></i> Hubungi Kami
+                    </a>
                 </div>
+            </div>
             </div>
 
         </div>

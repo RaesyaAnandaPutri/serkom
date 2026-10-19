@@ -34,23 +34,29 @@
                 <span class="fw-bold text-dark fs-5">{{ $contact->nama }}</span>
             </div>
 
-            <div class="mb-3">
-                <small class="text-muted d-block">Email</small>
-                <a href="mailto:{{ $contact->email }}" class="text-primary text-decoration-none fw-medium">{{ $contact->email ?? '-' }}</a>
-            </div>
 
-            <div class="mb-3">
-                <small class="text-muted d-block">Penilaian / Rating Diberikan</small>
-                <div class="text-warning fs-5">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= $contact->rating)
-                            <i class="bi bi-star-fill"></i>
-                        @else
-                            <i class="bi bi-star text-muted opacity-25"></i>
-                        @endif
-                    @endfor
-                    <span class="ms-1 fw-bold text-dark fs-6">({{ $contact->rating ?? 0 }}/5)</span>
-                </div>
+        <div class="mb-3">
+            <small class="text-muted d-block">Email</small>
+
+            <a href="mailto:{{ $contact->email }}"
+            class="text-primary text-decoration-none fw-medium">
+                {{ $contact->email ?? '-' }}
+            </a>
+
+            <div class="mt-2">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ urlencode($contact->email) }}&su={{ urlencode('Balasan Pesan - Fourlens') }}&body={{ urlencode("Halo " . $contact->nama . ",\n\nTerima kasih telah menghubungi kami melalui website Solusi Koneksi Anda.\n\n\nSalam,\nTim Solusi Koneksi Anda") }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary btn-sm rounded-pill px-3">
+                    <i class="bi bi-envelope me-1"></i> Balas via Email
+                </a>
+            </div>
+        </div>
+
+           <div class="mb-3">
+                <small class="text-muted d-block">Subjek Pesan</small>
+                <span class="fw-bold text-dark fs-6">{{ $contact->subjek }}</span>
+            </div>
             </div>
         </div>
 

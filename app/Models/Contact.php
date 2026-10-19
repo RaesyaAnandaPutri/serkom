@@ -12,9 +12,8 @@ class Contact extends Model
         'nama',
         'email',
         'telepon',
-        'subjek',
+        'subjek', 
         'pesan',
-        'rating',
         'status',   
     ];
 }

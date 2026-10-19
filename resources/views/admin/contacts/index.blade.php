@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Pesan Masuk & Rating')
-@section('subtitle', 'Daftar pesan, ulasan, dan rating dari pengunjung website')
+@section('title', 'Pesan Masuk & Subjek')
+@section('subtitle', 'Daftar pesan, subjek, dan pertanyaan dari pengunjung website')
 
 @section('content')
 <div class="card border-0 shadow-sm rounded-4 p-4">
@@ -11,7 +11,7 @@
             <thead>
                 <tr class="text-secondary small text-uppercase">
                     <th>Pengirim</th>
-                    <th>Rating</th>
+                    <th>Subjek</th>
                     <th>Pesan Singkat</th>
                     <th>Tanggal</th>
                     <th>Status</th>
@@ -26,18 +26,11 @@
                             <div class="text-muted small fw-normal">{{ $contact->email }}</div>
                         </td>
 
-                        {{-- Tampilan Rating Bintang --}}
+                        {{-- Tampilan Subjek Pesan --}}
                         <td>
-                            <div class="text-warning small">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $contact->rating)
-                                        <i class="bi bi-star-fill"></i>
-                                    @else
-                                        <i class="bi bi-star text-muted opacity-25"></i>
-                                    @endif
-                                @endfor
-                                <span class="ms-1 fw-bold text-dark small">({{ $contact->rating ?? 0 }}/5)</span>
-                            </div>
+                            <span class="badge bg-light text-dark border px-2 py-1 fw-semibold">
+                                {{ $contact->subjek }}
+                            </span>
                         </td>
 
                         <td>
@@ -77,8 +70,8 @@
                     <tr>
                         <td colspan="6" class="text-center py-5">
                             <i class="bi bi-envelope-open fs-1 text-primary opacity-50"></i>
-                            <h6 class="fw-bold mt-2">Belum Ada Pesan & Rating Masuk</h6>
-                            <p class="text-muted small">Pesan dan ulasan pengunjung melalui form kontak akan muncul di sini.</p>
+                            <h6 class="fw-bold mt-2">Belum Ada Pesan Masuk</h6>
+                            <p class="text-muted small">Pesan dan pertanyaan pengunjung melalui form kontak akan muncul di sini.</p>
                         </td>
                     </tr>
                 @endforelse

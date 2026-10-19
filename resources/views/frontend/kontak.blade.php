@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kontak & Penilaian - PT Solusi Koneksi Anda</title>
+    <title>Kontak & Konsultasi Layanan - PT Solusi Koneksi Anda</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -11,24 +11,6 @@
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fafafa; }
-        .rating-stars {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-            gap: 8px;
-        }
-        .rating-stars input { display: none; }
-        .rating-stars label {
-            font-size: 1.8rem;
-            color: #ccc;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .rating-stars input:checked ~ label,
-        .rating-stars label:hover,
-        .rating-stars label:hover ~ label {
-            color: #ffc107;
-        }
     </style>
 </head>
 <body>
@@ -38,14 +20,14 @@
     {{-- JUDUL HALAMAN --}}
     <section class="py-5">
         <div class="container py-4 text-center" style="max-width: 700px;">
-            <h1 class="display-5 fw-bold text-dark mb-3">Kirim Pesan & Penilaian</h1>
+            <h1 class="display-5 fw-bold text-dark mb-3">Konsultasikan Kebutuhan Layanan Anda</h1>
             <p class="text-secondary mb-0">
-                Bagikan tanggapan, pesan, atau ulasan Anda mengenai layanan kami.
+                Temukan solusi jaringan dan teknologi yang tepat untuk bisnis Anda. Kirimkan pertanyaan atau permintaan informasi layanan melalui formulir di bawah ini.
             </p>
         </div>
     </section>
 
-    {{-- FORM PESAN & RATING (TANPA KOTAK INFORMASI KONTAK DI SAMPING) --}}
+    {{-- FORM PESAN & KONSULTASI LAYANAN --}}
     <section class="pb-5">
         <div class="container pb-4" style="max-width: 650px;">
             <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
@@ -63,45 +45,32 @@
 
                     <div class="mb-4">
                         <label class="form-label fw-semibold small text-dark">Nama Anda <span class="text-danger">*</span></label>
-                        <input type="text" name="nama" class="form-control rounded-3 @error('nama') is-invalid @enderror" value="{{ old('nama') }}" placeholder="Masukkan nama Anda" required>
+                        <input type="text" name="nama" class="form-control rounded-3 @error('nama') is-invalid @enderror" value="{{ old('nama') }}" placeholder="Masukkan nama lengkap Anda" required>
                         @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     
                     <div class="mb-4">
-                    <label class="form-label fw-semibold small text-dark">Email Anda <span class="text-danger">*</span></label>
-                    <input type="email" name="email" class="form-control rounded-3 @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="nama@email.com" required>
-                    @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div>
-
-                    {{-- Input Rating Bintang --}}
-                    <div class="mb-4">
-                        <label class="form-label fw-semibold small text-dark d-block">Beri Penilaian (Rating)</label>
-                        <div class="rating-stars">
-                            <input type="radio" id="star5" name="rating" value="5" {{ old('rating') == '5' ? 'checked' : '' }} />
-                            <label for="star5" title="Sangat Bagus"><i class="bi bi-star-fill"></i></label>
-
-                            <input type="radio" id="star4" name="rating" value="4" {{ old('rating') == '4' ? 'checked' : '' }} />
-                            <label for="star4" title="Bagus"><i class="bi bi-star-fill"></i></label>
-
-                            <input type="radio" id="star3" name="rating" value="3" {{ old('rating') == '3' ? 'checked' : '' }} />
-                            <label for="star3" title="Cukup"><i class="bi bi-star-fill"></i></label>
-
-                            <input type="radio" id="star2" name="rating" value="2" {{ old('rating') == '2' ? 'checked' : '' }} />
-                            <label for="star2" title="Buruk"><i class="bi bi-star-fill"></i></label>
-
-                            <input type="radio" id="star1" name="rating" value="1" {{ old('rating') == '1' ? 'checked' : '' }} />
-                            <label for="star1" title="Sangat Buruk"><i class="bi bi-star-fill"></i></label>
-                        </div>
+                        <label class="form-label fw-semibold small text-dark">Email Anda <span class="text-danger">*</span></label>
+                        <input type="email" name="email" class="form-control rounded-3 @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="nama@email.com" required>
+                        @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label fw-semibold small text-dark">Pesan / Masukan <span class="text-danger">*</span></label>
-                        <textarea name="pesan" rows="5" class="form-control rounded-3 @error('pesan') is-invalid @enderror" placeholder="Tuliskan pesan Anda di sini..." required>{{ old('pesan') }}</textarea>
+                        <label class="form-label fw-semibold small text-dark">Subjek Layanan <span class="text-danger">*</span></label>
+                        <input type="text" name="subjek" class="form-control rounded-3 @error('subjek') is-invalid @enderror" placeholder="Contoh: Konsultasi Layanan Jaringan / Maintenance" value="{{ old('subjek') }}" required>
+                        @error('subjek')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold small text-dark">Pesan / Detail Kebutuhan Layanan <span class="text-danger">*</span></label>
+                        <textarea name="pesan" rows="5" class="form-control rounded-3 @error('pesan') is-invalid @enderror" placeholder="Tuliskan detail kebutuhan layanan atau pertanyaan Anda di sini..." required>{{ old('pesan') }}</textarea>
                         @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <button type="submit" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold shadow-sm w-100">
-                        <i class="bi bi-send me-1"></i> Kirim Pesan & Penilaian
+                        <i class="bi bi-send me-1"></i> Kirim Pesan Konsultasi
                     </button>
                 </form>
             </div>
