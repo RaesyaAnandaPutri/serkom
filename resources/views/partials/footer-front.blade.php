@@ -4,12 +4,12 @@
     <div class="container">
         <div class="row g-4">
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5 class="fw-bold">{{ $p->name ?? 'Solusi Koneksi Anda' }}</h5>
                 <p class="small text-white-50 mb-0">IT Solution & Web Development</p>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h6 class="fw-bold mb-3">Menu</h6>
                 <ul class="list-unstyled small mb-0">
                     <li class="mb-2"><a href="{{ url('/') }}" class="text-white-50 text-decoration-none">Home</a></li>
@@ -21,12 +21,20 @@
                 </ul>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h6 class="fw-bold mb-3">Kontak</h6>
                 <ul class="list-unstyled small text-white-50 mb-0">
-                    <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i>{{ $p->alamat ?? 'Bogor, Jawa Barat' }}</li>
+                    <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i>{{ $p->alamat ?? 'Jl. M.H. Thamrin No. 12, Kebon Sirih, Kec. Menteng, Jakarta Pusat, DKI Jakarta 10340' }}</li>
                     <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i>{{ $p->telepon ?? '(0251) 888-999' }}</li>
                     <li><i class="bi bi-envelope-fill me-2"></i>{{ $p->email ?? 'info@solusikoneksianda.co.id' }}</li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6 class="fw-bold mb-3">Jam Operasional</h6>
+                <ul class="list-unstyled small text-white-50 mb-0">
+                    <li class="mb-2">Senin – Jumat: 08.30 – 17.30 WIB</li>
+                    <li>Sabtu – Minggu: Tutup (Emergency Support via Email)</li>
                 </ul>
             </div>
 

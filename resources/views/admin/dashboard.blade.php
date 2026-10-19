@@ -94,18 +94,18 @@
                     </div>
                     @forelse ($layananTerbaru as $layanan)
                         <div class="d-flex align-items-center justify-content-between gap-2 py-2 border-bottom">
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2 flex-grow-1" style="min-width: 0;">
                                 {{-- Thumbnail Gambar Layanan --}}
                                 @if($layanan->gambar)
-                                    <img src="{{ asset('storage/' . $layanan->gambar) }}" alt="{{ $layanan->nama ?? $layanan->judul }}" class="rounded-3 object-fit-cover" style="width: 40px; height: 40px;">
+                                    <img src="{{ asset('storage/' . $layanan->gambar) }}" alt="{{ $layanan->nama ?? $layanan->judul }}" class="rounded-3 object-fit-cover flex-shrink-0" style="width: 40px; height: 40px;">
                                 @else
-                                    <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted" style="width: 40px; height: 40px;">
+                                    <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted flex-shrink-0" style="width: 40px; height: 40px;">
                                         <i class="bi bi-image small"></i>
                                     </div>
                                 @endif
-                                <span class="text-dark fw-semibold small text-truncate" style="max-width: 140px;">{{ $layanan->nama ?? $layanan->judul }}</span>
+                                <span class="text-dark fw-semibold small text-truncate" style="min-width: 0;" title="{{ $layanan->nama ?? $layanan->judul }}">{{ $layanan->nama ?? $layanan->judul }}</span>
                             </div>
-                            <small class="text-muted text-nowrap" style="font-size: 0.75rem;">{{ $layanan->created_at->translatedFormat('d M Y') }}</small>
+                            <small class="text-muted text-nowrap flex-shrink-0" style="font-size: 0.75rem;">{{ $layanan->created_at->translatedFormat('d M Y') }}</small>
                         </div>
                     @empty
                         <p class="text-muted text-center py-3 mb-0 small">Belum ada layanan.</p>
@@ -124,18 +124,18 @@
                     </div>
                     @forelse ($artikelTerbaru as $artikel)
                         <div class="d-flex align-items-center justify-content-between gap-2 py-2 border-bottom">
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2 flex-grow-1" style="min-width: 0;">
                                 {{-- Thumbnail Gambar Artikel --}}
                                 @if($artikel->gambar)
-                                    <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="{{ $artikel->judul }}" class="rounded-3 object-fit-cover" style="width: 40px; height: 40px;">
+                                    <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="{{ $artikel->judul }}" class="rounded-3 object-fit-cover flex-shrink-0" style="width: 40px; height: 40px;">
                                 @else
-                                    <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted" style="width: 40px; height: 40px;">
+                                    <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-muted flex-shrink-0" style="width: 40px; height: 40px;">
                                         <i class="bi bi-image small"></i>
                                     </div>
                                 @endif
-                                <span class="text-dark fw-semibold small text-truncate" style="max-width: 140px;">{{ $artikel->judul }}</span>
+                                <span class="text-dark fw-semibold small text-truncate" style="min-width: 0;" title="{{ $artikel->judul }}">{{ $artikel->judul }}</span>
                             </div>
-                            <small class="text-muted text-nowrap" style="font-size: 0.75rem;">{{ $artikel->created_at->translatedFormat('d M Y') }}</small>
+                            <small class="text-muted text-nowrap flex-shrink-0" style="font-size: 0.75rem;">{{ $artikel->created_at->translatedFormat('d M Y') }}</small>
                         </div>
                     @empty
                         <p class="text-muted text-center py-3 mb-0 small">Belum ada artikel.</p>

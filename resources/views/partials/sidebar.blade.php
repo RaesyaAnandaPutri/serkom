@@ -40,17 +40,17 @@
             </a>
         </li>
 
+         {{-- Galeri Kegiatan --}}
+        <li class="nav-item">
+            <a href="{{ url('/admin/galeri') }}" class="nav-link text-nowrap rounded-3 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is('admin/galeri*') ? 'active shadow-sm' : 'text-secondary' }}">
+                <i class="bi bi-images me-2"></i>Galeri Kegiatan
+            </a>
+        </li>
+
         {{-- Artikel --}}
         <li class="nav-item">
             <a href="{{ url('/admin/artikel') }}" class="nav-link text-nowrap rounded-3 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is('admin/artikel*') ? 'active shadow-sm' : 'text-secondary' }}">
                 <i class="bi bi-journal-text me-2"></i>Artikel
-            </a>
-        </li>
-
-        {{-- Galeri Kegiatan --}}
-        <li class="nav-item">
-            <a href="{{ url('/admin/galeri') }}" class="nav-link text-nowrap rounded-3 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is('admin/galeri*') ? 'active shadow-sm' : 'text-secondary' }}">
-                <i class="bi bi-images me-2"></i>Galeri Kegiatan
             </a>
         </li>
 

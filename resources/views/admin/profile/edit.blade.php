@@ -62,7 +62,7 @@
 
                         <div class="col-md-4">
                             <label class="form-label fw-semibold small text-secondary">Alamat Lengkap</label>
-                            <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $profile->alamat ?? '') }}" required>
+                            <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $profile->alamat ?? 'Jl. M.H. Thamrin No. 12, Kebon Sirih, Kec. Menteng, Jakarta Pusat, DKI Jakarta 10340') }}" required>
                             @error('alamat')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 

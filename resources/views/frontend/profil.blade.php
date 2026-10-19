@@ -63,7 +63,7 @@
 
             <div class="row g-4">
                 @foreach([
-                    ['bi-geo-alt',   'Alamat',  $profil->alamat  ?? 'Bogor, Jawa Barat'],
+                    ['bi-geo-alt',   'Alamat',  $profil->alamat  ?? 'Jl. M.H. Thamrin No. 12, Kebon Sirih, Kec. Menteng, Jakarta Pusat, DKI Jakarta 10340'],
                     ['bi-telephone', 'Telepon', $profil->telepon ?? '(0251) 888-999'],
                     ['bi-envelope',  'Email',   $profil->email   ?? 'info@solusikoneksianda.co.id'],
                 ] as [$ikon, $label, $isi])
