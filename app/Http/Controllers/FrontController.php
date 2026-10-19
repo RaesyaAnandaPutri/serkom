@@ -69,7 +69,7 @@ class FrontController extends Controller
         $artikel = Article::where('status', 'publik')
             ->when($keyword, function($query, $keyword) {
                 return $query->where('judul', 'like', "%{$keyword}%")
-                           ->orWhere('konten', 'like', "%{$keyword}%");
+                             ->orWhere('konten', 'like', "%{$keyword}%");
             })
             ->latest()
             ->paginate(6)
@@ -93,7 +93,7 @@ class FrontController extends Controller
         $galeri = Gallery::where('status', 'publik')
             ->when($keyword, function($query, $keyword) {
                 return $query->where('judul', 'like', "%{$keyword}%")
-                           ->orWhere('deskripsi', 'like', "%{$keyword}%");
+                             ->orWhere('deskripsi', 'like', "%{$keyword}%");
             })
             ->latest()
             ->paginate(6)
@@ -102,29 +102,30 @@ class FrontController extends Controller
         return view('frontend.galeri', compact('galeri'));
     }
 
-    // Halaman Kontak Kami
+    // Menampilkan Halaman Kontak Kami
     public function kontak()
     {
         return view('frontend.kontak');
     }
 
-    // Menyimpan Pesan Kontak Masuk dari Publik
+    // Menyimpan Pesan & Penilaian dari Kontak Kami
     public function storeKontak(Request $request)
     {
         $request->validate([
             'nama'   => 'required|string|max:255',
             'email'  => 'required|email|max:255',
-            'pesan'  => 'required|string',
             'rating' => 'nullable|integer|min:1|max:5',
-        ], [
-            'nama.required'  => 'Nama wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email'    => 'Format email tidak valid.',
-            'pesan.required' => 'Pesan wajib diisi.',
+            'pesan'  => 'required|string',
         ]);
 
-        Contact::create($request->only(['nama', 'email', 'pesan', 'rating']));
+        Contact::create([
+            'nama'   => $request->nama,
+            'email'  => $request->email,
+            'rating' => $request->rating,
+            'pesan'  => $request->pesan,
+            'status' => 'unread',
+        ]);
 
-        return redirect()->back()->with('success', 'Terima kasih! Pesan dan penilaian Anda telah berhasil dikirim.');
+        return redirect()->route('front.kontak')->with('success', 'Pesan dan penilaian Anda berhasil dikirim!');
     }
 }

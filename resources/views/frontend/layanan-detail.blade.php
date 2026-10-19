@@ -70,8 +70,11 @@
                         </div>
                         <h5 class="fw-bold text-dark mb-2">Tertarik dengan Layanan Ini?</h5>
                         <p class="small text-dark mb-4">Hubungi tim kami segera untuk konsultasi kebutuhan bisnis Anda.</p>
-                        <a href="{{ route('front.kontak') }}" class="btn btn-dark rounded-pill w-15 py-2 fw-semibold shadow-sm">
-                            Hubungi Kami
+                        
+                        <a href="https://wa.me/6283183921389?text={{ urlencode('Halo PT Solusi Koneksi Anda, saya tertarik dengan layanan ' . $layanan->nama . '. Mohon informasinya lebih lanjut.') }}" 
+                           target="_blank" 
+                           class="btn btn-dark rounded-pill w-100 py-2 fw-semibold shadow-sm">
+                            <i class="bi bi-whatsapp me-1"></i> Hubungi via WhatsApp
                         </a>
                     </div>
                 </div>

@@ -14,16 +14,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/profil-perusahaan', [FrontController::class, 'profil'])->name('front.profil');
 Route::get('/layanan', [FrontController::class, 'layanan'])->name('front.layanan');
-Route::get('/layanan/{id}', [FrontController::class, 'detailLayanan'])->name('layanan.show'); // Rute Detail Layanan
+Route::get('/layanan/{id}', [FrontController::class, 'detailLayanan'])->name('layanan.show');
 Route::get('/artikel', [FrontController::class, 'artikel'])->name('front.artikel');
-Route::get('/artikel/{id}', [FrontController::class, 'detailArtikel'])->name('artikel.show'); // Rute Detail Artikel
+Route::get('/artikel/{id}', [FrontController::class, 'detailArtikel'])->name('artikel.show');
 Route::get('/galeri', [FrontController::class, 'galeri'])->name('front.galeri');
+
+// Rute Kontak Publik (Hanya Nama, Email, Pesan, Rating)
 Route::get('/kontak', [FrontController::class, 'kontak'])->name('front.kontak');
 Route::post('/kontak/store', [FrontController::class, 'storeKontak'])->name('front.kontak.store');
 
 // ===== Rute Login Kustom =====
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.authenticate');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.authenticate');
+});
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // ===== Halaman Admin =====
@@ -60,7 +64,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('galeri/{galeri}', [GalleryController::class, 'update'])->name('galeri.update');
     Route::delete('galeri/{galeri}', [GalleryController::class, 'destroy'])->name('galeri.destroy');
 
-    // Kontak / Pesan Masuk
+    // Kontak / Pesan Masuk (Admin - Tanpa Route Reply)
     Route::get('kontak', [ContactController::class, 'index'])->name('kontak.index');
     Route::get('kontak/{kontak}', [ContactController::class, 'show'])->name('kontak.show');
     Route::delete('kontak/{kontak}', [ContactController::class, 'destroy'])->name('kontak.destroy');
